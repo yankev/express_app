@@ -4,4 +4,5 @@ CREATE ROLE "kevin" WITH SUPERUSER LOGIN PASSWORD 'pass';
 ALTER DATABASE puppies OWNER TO kevin;
 ```
 
-postgres://kevin:pass@localhost:5432/puppies
+Access db with this address:
+`postgres://kevin:pass@localhost:5432/puppies`
