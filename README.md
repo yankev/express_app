@@ -1,5 +1,7 @@
-CREATE ROLE "pups" WITH SUPERUSER LOGIN PASSWORD 'pups';
 
-ALTER DATABASE puppies OWNER TO pups;
+```sql
+CREATE ROLE "kevin" WITH SUPERUSER LOGIN PASSWORD 'pass';
+ALTER DATABASE puppies OWNER TO kevin;
+```
 
-postgres://pups:pups@localhost:5432/puppies
+postgres://kevin:pass@localhost:5432/puppies
