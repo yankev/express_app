@@ -1,6 +1,8 @@
 var express = require('express');
 var db = require('./db');
 var router = express.Router();
+var path = require('path');
+
 
 router.use(function(req, res, next) {
 	console.log("Got a request"	);
@@ -12,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/rmarkdown', function(req, res) {
-	res.render('rmarkdown');
+	res.sendFile(path.join(__dirname, '/views', '/rmarkdown.html'));
 });
 
 router.get('/index/:message', function(req, res) {
@@ -23,6 +25,6 @@ router.get('/select_all', db.select_all)
 
 router.post('/input', function(req, res, next) {
 	res.send('fookn right');
-})
+});
 
 module.exports = router;
