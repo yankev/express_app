@@ -25,6 +25,22 @@ function add_pup(req, res, next) {
 	    });
 }
 
+function createPuppy(req, res, next) {
+  req.body.age = parseInt(req.body.age);
+  db.none('insert into pups(name, breed, age, sex)' +
+      'values(${name}, ${breed}, ${age}, ${sex})',
+    req.body)
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Inserted one puppy'
+        });
+    })
+    .catch(function (err) {
+    });
+}
+
 module.exports = {
 	select_all: select_all,
 	add_pup: add_pup

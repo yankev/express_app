@@ -14,7 +14,11 @@ router.get('/', function (req, res) {
 });
 
 router.get('/rmarkdown', function(req, res) {
-	res.sendFile(path.join(__dirname, '/views', '/rmarkdown.html'));
+	res.sendFile(path.join(__dirname, '/html', '/rmarkdown.html'));
+});
+
+router.get('/input', function(req, res) {
+	res.sendFile(path.join(__dirname, '/html', '/input.html'));
 });
 
 router.get('/index/:message', function(req, res) {
@@ -23,7 +27,7 @@ router.get('/index/:message', function(req, res) {
 
 router.get('/select_all', db.select_all)
 
-router.post('/input', function(req, res, next) {
+router.post('/add', function(req, res, next) {
 	res.send('fookn right');
 });
 
