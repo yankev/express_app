@@ -20,7 +20,7 @@ router.get('/rmarkdown', function(req, res) {
 
 // return post form
 router.get('/input', function(req, res) {
-	res.sendFile(path.join(__dirname, '/html', '/input.html'));
+	res.sendFile(path.join(__dirname, '/views', '/input.html'));
 });
 
 // takes in url arguments
