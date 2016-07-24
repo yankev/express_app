@@ -19,6 +19,7 @@ function add_pup(req, res, next) {
 	db.none("INSERT INTO pups(name, breed, age, sex) VALUES ($1, $2, $3, $4)", list)
 		.then(function () {
 	        console.log('successful insert');
+            res.send('Successful Insert');
 	    })
 	    .catch(function(err) {
 	    	console.log('error: ', err)
