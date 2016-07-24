@@ -24,7 +24,7 @@ router.get('/index/:message', function(req, res) {
 });
 
 // router call that calls select all from db.js
-router.get('/select_all', db.select_all)
+router.get('/select_all', db.select_all);
 
 // need to edit this to make handle post requests
 router.post('/test-page', function(req, res) {
@@ -32,6 +32,9 @@ router.post('/test-page', function(req, res) {
         color = req.body.color;
     console.log('Name: ', name, ' Colour: ', color);
 });
+
+router.post('/add_dog', db.add_pup);
+router.post('/check', db.check);
 
 module.exports = router;
 

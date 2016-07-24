@@ -14,9 +14,9 @@ function select_all(req, res, next) {
 }
 
 function add_pup(req, res, next) {
-	p = req.params;
+	p = req.body;
 	list = [p.name, p.breed, p.age, p.sex];
-	db.none("INSERT INTO pups((name, breed, age, sex) VALUES ($1, $2)", list)
+	db.none("INSERT INTO pups(name, breed, age, sex) VALUES ($1, $2, $3, $4)", list)
 		.then(function () {
 	        console.log('successful insert');
 	    })
@@ -41,7 +41,14 @@ function createPuppy(req, res, next) {
     });
 }
 
+function check(req, res, next) {
+    var name = req.body.name,
+        color = req.body.color;
+    console.log('Name: ', name, ' Colour: ', color);
+}
+
 module.exports = {
-	select_all: select_all,
-	add_pup: add_pup
+    select_all: select_all,
+    add_pup: add_pup,
+    check: check
 }
