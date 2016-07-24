@@ -18,6 +18,11 @@ router.get('/rmarkdown', function(req, res) {
 	res.sendFile(path.join(__dirname, '/html', '/rmarkdown.html'));
 });
 
+// return post form
+router.get('/input', function(req, res) {
+	res.sendFile(path.join(__dirname, '/html', '/input.html'));
+});
+
 // takes in url arguments
 router.get('/index/:message', function(req, res) {
 	res.render('index', { title: 'Hey', message: req.params.message});
