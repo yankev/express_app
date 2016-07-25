@@ -5,27 +5,27 @@ var path = require('path');
 
 
 router.use(function(req, res, next) {
-	console.log("Got a request, send request off to the next handler");
-	next();
+    console.log("Got a request, send request off to the next handler");
+    next();
 });
 
 router.get('/', function (req, res) {
-	res.send('Hello World');
+    res.send('Hello World');
 });
 
 // returns an html file
 router.get('/rmarkdown', function(req, res) {
-	res.sendFile(path.join(__dirname, '/html', '/rmarkdown.html'));
+    res.sendFile(path.join(__dirname, '/html', '/rmarkdown.html'));
 });
 
 // return post form
 router.get('/input', function(req, res) {
-	res.sendFile(path.join(__dirname, '/views', '/input.html'));
+    res.sendFile(path.join(__dirname, '/views', '/input.html'));
 });
 
 // takes in url arguments
 router.get('/index/:message', function(req, res) {
-	res.render('index', { title: 'Hey', message: req.params.message});
+    res.render('index', { title: 'Hey', message: req.params.message});
 });
 
 // router call that calls select all from db.js
