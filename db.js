@@ -10,7 +10,8 @@ function select_all(req, res, next) {
 	    })
 	    .catch(function (error) {
 	        console.log("ERROR:", error);
-	    });
+            res.send('An error occurred');
+        });
 }
 
 function add_pup(req, res, next) {

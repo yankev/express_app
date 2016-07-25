@@ -22,7 +22,8 @@
   		</fieldset>
   	</form>
     <div id='result'></div>
-
+    <input type="button" value="display results" onClick=show_all()>
+    <div id='database'></div>
     <script>
         function cfunc() {
             alert(xhttp.responseText);
@@ -43,6 +44,17 @@
                      'sex='+document.dog_form.sex.value;
             xhttp.send(params);
         }
+        function show_all() {
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(xhttp.readyState ==4 && xhttp.status == 200) {
+                    document.getElementById('database').innerHTML = xhttp.responseText;
+                }
+            }
+            xhttp.open("GET", "/select_all", true);
+            xhttp.send();
+        }
+    
     </script>
 </body>
 </html>
