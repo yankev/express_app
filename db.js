@@ -1,5 +1,6 @@
 var pgp = require("pg-promise")();
 var db = pgp("postgres://kevin:kevin@localhost:5432/puppies");
+var xml = require('xml');
 
 function select_all(req, res, next) {
 
@@ -28,15 +29,36 @@ function add_pup(req, res, next) {
         });
 }
 
+function delete_entry(req, res, next) {
+
+}
+
+function filter_select(req, res, next) {
+    // for now we'll filter by age
+    param = req.body.age;
+    req.body.any("select * from pups where age=$1", param)
+        .then(function (data) {
+            // success;
+            res.send(data);
+        })
+        .catch(function (error) {
+            // error;
+            res.send('An error occured');
+        });
+}
+
 function check(req, res, next) {
     var name = req.body.name,
         color = req.body.color;
     console.log(req.body);
     console.log('Name: ', name, ' Colour: ', color);
+    res.set('Content-Type', 'text/xml');
+    res.send(xml('<tag></tag>'));
 }
 
 module.exports = {
     select_all: select_all,
     add_pup: add_pup,
-    check: check
+    check: check,
+    filter: filter_select
 }
