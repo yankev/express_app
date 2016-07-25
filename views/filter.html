@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <input type="button" value="display all results" onClick=show_all()>
+    <br>Age: <input type="number" value=0>
+    <input type="button" value="display filtered results" onClick=show_filtered()>
+    <div id='database'></div>
+    <script>
+    function show_all() {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById('database').innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "/select_all", true);
+        xhttp.send();
+    }
+    </script>
+</body>
+
+</html>

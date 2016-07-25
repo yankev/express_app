@@ -23,13 +23,15 @@ router.get('/input', function(req, res) {
     res.sendFile(path.join(__dirname, '/views', '/input.html'));
 });
 
-// takes in url arguments
+// takes in url arguments, and renders are PUG/Jade template
 router.get('/index/:message', function(req, res) {
     res.render('index', { title: 'Hey', message: req.params.message});
 });
 
 // router call that calls select all from db.js
 router.get('/select_all', db.select_all);
+//router call that gets filtered data from db
+router.get('/select_all')
 
 // need to edit this to make handle post requests
 router.post('/test-page', function(req, res) {
