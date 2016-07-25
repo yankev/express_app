@@ -36,6 +36,7 @@ router.post('/test-page', function(req, res) {
     var name = req.body.name,
         color = req.body.color;
     console.log('Name: ', name, ' Colour: ', color);
+    res.send('responding to post request');
 });
 
 router.post('/add_dog', db.add_pup);

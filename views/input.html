@@ -8,15 +8,15 @@
 		<fieldset>
 	    <legend>Puppy Information:</legend>
 	    Name:<br>
-	    <input type="text" name="name" value=""><br>
+	    <input type="text" name="name" value="" required /><br>
 	    <br>
 	    Breed:<br>
-	    <input type="text" name="breed" value=""><br>
+	    <input type="text" name="breed" value="" required /><br>
 	    <br>
 	    Age:<br>
 	    <input type="number" name="age" value=""><br>
 	    Sex:<br>
-	    <input type="text" name="sex" value=""><br>
+	    <input type="text" name="sex" value="" required /><br>
 	    <br>
         <input type="button" value="Submit" onClick=answer()>
   		</fieldset>
@@ -24,9 +24,17 @@
     <div id='result'></div>
 
     <script>
+        function cfunc() {
+            alert(xhttp.responseText);
+            document.getElementById('result').innerHTML = xhttp.responseText;
+        }
         function answer() {
             xhttp = new XMLHttpRequest();
-            alert('hello');
+            xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+               cfunc(xhttp);
+            }
+  };
             xhttp.open("POST", "/add_dog", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             params = 'name='+document.dog_form.name.value+'&'+
@@ -34,7 +42,6 @@
                      'age='+document.dog_form.age.value+'&'+
                      'sex='+document.dog_form.sex.value;
             xhttp.send(params);
-            document.getElementById("result").innerHTML = xhttp.responseText;
         }
     </script>
 </body>
