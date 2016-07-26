@@ -26,6 +26,11 @@ router.get('/input', function(req, res) {
     res.sendFile(path.join(__dirname, '/views', '/input.html'));
 });
 
+// return a page for more db operations
+router.get('/input', function(req, res) {
+    res.sendFile(path.join(__dirname, '/views', '/db_stuff.html'));
+});
+
 // takes in url arguments, and renders are PUG/Jade template
 router.get('/index/:message', function(req, res) {
     res.render('index', { title: 'Hey', message: req.params.message});
