@@ -31,7 +31,7 @@ router.get('/index/:message', function(req, res) {
 // router call that calls select all from db.js
 router.get('/select_all', db.select_all);
 //router call that gets filtered data from db
-router.get('/select_all')
+router.get('/filter/:age', db.filter);
 
 // need to edit this to make handle post requests
 router.post('/test-page', function(req, res) {

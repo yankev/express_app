@@ -35,14 +35,17 @@ function delete_entry(req, res, next) {
 
 function filter_select(req, res, next) {
     // for now we'll filter by age
-    param = req.body.age;
-    req.body.any("select * from pups where age=$1", param)
+    param = req.params.age;
+    db.any("select * from pups where age=$1", param)
         .then(function (data) {
             // success;
+            console.log('we found matches')
             res.send(data);
+
         })
         .catch(function (error) {
             // error;
+            console.log('most likely no matches were found')
             res.send('An error occured');
         });
 }
