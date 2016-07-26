@@ -46,7 +46,7 @@ function filter_select(req, res, next) {
         .catch(function(error) {
             // error;
             console.log('most likely no matches were found');
-            res.send('An error occured');
+            res.send('An error occurred');
         });
 }
 
@@ -71,7 +71,7 @@ function filter_select_query(req, res, next) {
         .catch(function(error) {
             // error;
             console.log('most likely no matches were found')
-            res.send('An error occured');
+            res.send('An error occurred');
         });
 }
 
