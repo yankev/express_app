@@ -52,18 +52,14 @@ function filter_select(req, res, next) {
 
 function filter_select_query(req, res, next) {
     // for now we'll filter by age
-    param = req.query.age;
-    if (!param) {
-        console.log('now age parameter given');
-        res.send('error, no age parameter given');
-    } else if (req.query.age && req.query.sex) {
-        extension = "age=" + req.query.age + " AND " + "sex=" + "'" + req.query.sex + "'";
+    if (req.query.age && req.query.sex) {
+        extension = " where "+ "age=" + req.query.age + " AND " + "sex=" + "'" + req.query.sex + "'";
     } else if (req.query.age) {
-        extension = "age=" + req.query.age;
+        extension = " where " + "age=" + req.query.age;
     } else {
-        res.send('No support for this query at the moment');
+        extension = "";
     }
-    query_string = "select * from pups where " + extension + ";";
+    query_string = "select * from pups" + extension + ";";
     console.log(query_string);
     db.any(query_string)
         .then(function(data) {
