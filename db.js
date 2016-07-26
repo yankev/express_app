@@ -45,7 +45,7 @@ function filter_select(req, res, next) {
         })
         .catch(function(error) {
             // error;
-            console.log('most likely no matches were found')
+            console.log('most likely no matches were found');
             res.send('An error occured');
         });
 }
@@ -57,16 +57,18 @@ function filter_select_query(req, res, next) {
         console.log('now age parameter given');
         res.send('error, no age parameter given');
     } else if (req.query.age && req.query.sex) {
-        extension = "age=" + req.query.age + " " + "sex=" + req.query.sex;
+        extension = "age=" + req.query.age + " AND " + "sex=" + "'" + req.query.sex + "'";
     } else if (req.query.age) {
         extension = "age=" + req.query.age;
+    } else {
+        res.send('No support for this query at the moment');
     }
     query_string = "select * from pups where " + extension + ";";
     console.log(query_string);
     db.any(query_string)
         .then(function(data) {
             // success;
-            console.log('we found matches')
+            console.log('we found matches');
             res.send(data);
 
         })
