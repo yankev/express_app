@@ -37,7 +37,10 @@ router.get('/index/:message', function(req, res) {
 router.get('/select_all', db.select_all);
 //router call that gets filtered data from db
 // router.get('/filter/:age', db.filter); //this should be deprecated in favor of the following:
-router.get('/filter', db.filter2);
+
+// router.get('/filter', db.filter);
+// TESTING
+router.get('/filter', db.filter_general);
 
 // POST REQUESTS
 // need to edit this to make handle post requests
