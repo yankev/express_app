@@ -78,12 +78,11 @@ function filter_select_query(req, res, next) {
         });
 }
 
-// Trying to write an even more general version of 'filter_select_query'
+// A general version of filtering
 function filter_general(req, res) {
 
     extension = [];
     for(var key in req.query) {
-        console.log(req.query[key]);
         temp = key + "=" + "'" + req.query[key] + "'";
         extension.push(temp);
     }
@@ -91,16 +90,12 @@ function filter_general(req, res) {
     query_string = "select * from pups where " + extension + ";";
     db.any(query_string)
         .then(function(data) {
-            // success;
             console.log('we found matches');
             res.send(data);
-
         })
         .catch(function(error) {
-            // error;
             res.send('Didn\'t work! Need a better error msg tho');
         });
-    // res.send(query_string);
 }
 
 function check(req, res, next) {
