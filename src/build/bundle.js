@@ -79,15 +79,55 @@
 	    _createClass(App, [{
 	        key: 'render',
 	        value: function render() {
+	            var text = this.props.txt;
 	            return _react2.default.createElement(
-	                'h1',
+	                'div',
 	                null,
-	                'Hello World'
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    text
+	                ),
+	                _react2.default.createElement(
+	                    Button,
+	                    null,
+	                    'Click Me'
+	                )
 	            );
 	        }
 	    }]);
 	
 	    return App;
+	}(_react.Component);
+	
+	App.PropTypes = {
+	    txt: _react2.default.PropTypes.string
+	};
+	App.defaultProps = {
+	    txt: 'Default Text'
+	};
+	
+	var Button = function (_Component2) {
+	    _inherits(Button, _Component2);
+	
+	    function Button() {
+	        _classCallCheck(this, Button);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Button).apply(this, arguments));
+	    }
+	
+	    _createClass(Button, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'button',
+	                null,
+	                this.props.children
+	            );
+	        }
+	    }]);
+	
+	    return Button;
 	}(_react.Component);
 	
 	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));

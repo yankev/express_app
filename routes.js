@@ -36,6 +36,11 @@ router.get('/index', function(req, res) {
     res.sendFile(path.join(__dirname, '/', '/index.html'));
 });
 
+// serve bootstrap template
+router.get('/bs_index', function(req, res) {
+    res.sendFile(path.join(__dirname, '/', 'bs_index.html'));
+})
+
 // takes in url arguments, and renders are PUG/Jade template
 router.get('/index/:message', function(req, res) {
     res.render('index', { title: 'Hey', message: req.params.message});
