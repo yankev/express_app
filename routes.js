@@ -27,8 +27,13 @@ router.get('/input', function(req, res) {
 });
 
 // return a page for more db operations
-router.get('/input', function(req, res) {
+router.get('/db_stuff', function(req, res) {
     res.sendFile(path.join(__dirname, '/views', '/db_stuff.html'));
+});
+
+// serve a react app
+router.get('/index', function(req, res) {
+    res.sendFile(path.join(__dirname, '/', '/index.html'));
 });
 
 // takes in url arguments, and renders are PUG/Jade template
