@@ -32,7 +32,7 @@ router.get('/index/:message', function(req, res) {
 router.get('/select_all', db.select_all);
 //router call that gets filtered data from db
 router.get('/filter/:age', db.filter);
-
+router.get('/filter', db.filter2);
 // need to edit this to make handle post requests
 router.post('/test-page', function(req, res) {
     var name = req.body.name,

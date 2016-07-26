@@ -5,11 +5,11 @@ var xml = require('xml');
 function select_all(req, res, next) {
 
     db.any("SELECT * from pups;")
-        .then(function (data) {
+        .then(function(data) {
             console.log("DATA:", data);
             res.send(data);
         })
-        .catch(function (error) {
+        .catch(function(error) {
             console.log("ERROR:", error);
             res.send('An error occurred');
         });
@@ -19,7 +19,7 @@ function add_pup(req, res, next) {
     p = req.body;
     list = [p.name, p.breed, p.age, p.sex];
     db.none("INSERT INTO pups(name, breed, age, sex) VALUES ($1, $2, $3, $4)", list)
-        .then(function () {
+        .then(function() {
             console.log('successful insert');
             res.end('Successful Insert');
         })
@@ -37,13 +37,40 @@ function filter_select(req, res, next) {
     // for now we'll filter by age
     param = req.params.age;
     db.any("select * from pups where age=$1", param)
-        .then(function (data) {
+        .then(function(data) {
             // success;
             console.log('we found matches')
             res.send(data);
 
         })
-        .catch(function (error) {
+        .catch(function(error) {
+            // error;
+            console.log('most likely no matches were found')
+            res.send('An error occured');
+        });
+}
+
+function filter_select_query(req, res, next) {
+    // for now we'll filter by age
+    param = req.query.age;
+    if (!param) {
+        console.log('now age parameter given');
+        res.send('error, no age parameter given');
+    } else if (req.query.age && req.query.sex) {
+        extension = "age=" + req.query.age + " " + "sex=" + req.query.sex;
+    } else if (req.query.age) {
+        extension = "age=" + req.query.age;
+    }
+    query_string = "select * from pups where " + extension + ";";
+    console.log(query_string);
+    db.any(query_string)
+        .then(function(data) {
+            // success;
+            console.log('we found matches')
+            res.send(data);
+
+        })
+        .catch(function(error) {
             // error;
             console.log('most likely no matches were found')
             res.send('An error occured');
@@ -63,5 +90,6 @@ module.exports = {
     select_all: select_all,
     add_pup: add_pup,
     check: check,
-    filter: filter_select
+    filter: filter_select,
+    filter2: filter_select_query
 }
