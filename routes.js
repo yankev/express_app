@@ -10,11 +10,6 @@ router.use(function(req, res, next) {
 });
 
 // All the GETS
-
-router.get('/', function (req, res) {
-    res.send('Hello World');
-});
-
 // CALLS DEALING WITH TEMPLATES AND HTML
 
 // returns an html file
@@ -36,8 +31,8 @@ router.get('/index', function(req, res) {
     res.sendFile(path.join(__dirname, '/', '/index.html'));
 });
 
-// serve bootstrap template
-router.get('/bs_index', function(req, res) {
+// serve bootstrap template NOW THE NEW MAIN!!!!
+router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/', 'bs_index.html'));
 })
 
