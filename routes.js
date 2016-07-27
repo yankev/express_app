@@ -10,14 +10,15 @@ router.use(function(req, res, next) {
 });
 
 // All the GETS
-
-router.get('/', function (req, res) {
-    res.send('Hello World');
-});
-
 // CALLS DEALING WITH TEMPLATES AND HTML
 
 // returns an html file
+
+// serve bootstrap template, NEW MAIN!!
+router.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, '/', 'bs_index.html'));
+})
+
 router.get('/rmarkdown', function(req, res) {
     res.sendFile(path.join(__dirname, '/html', '/rmarkdown.html'));
 });
@@ -35,11 +36,6 @@ router.get('/db_stuff', function(req, res) {
 router.get('/index', function(req, res) {
     res.sendFile(path.join(__dirname, '/', '/index.html'));
 });
-
-// serve bootstrap template
-router.get('/bs_index', function(req, res) {
-    res.sendFile(path.join(__dirname, '/', 'bs_index.html'));
-})
 
 // takes in url arguments, and renders are PUG/Jade template
 router.get('/index/:message', function(req, res) {
