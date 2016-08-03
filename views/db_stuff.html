@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FILTER FORM</title>
+    </head>
+    <body>
+        <h1>FILTER FORM</h1>
+        <form action="/add" method="post" name='dog_form'>
+            <fieldset>
+                <legend>Puppy Information:</legend>
+                Name:<br>
+                <input type="text" name="name" value="" /><br>
+                <br>
+                Breed:<br>
+                <input type="text" name="breed" value="" /><br>
+                <br>
+                Age:<br>
+                <input type="number" name="age" value=""><br>
+                Sex:<br>
+                <select name="sex">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <br>
+                <input type="button" value="Submit" onClick=filter()>
+            </fieldset>
+        </form>
+        <div id='result'></div>
+        <input type="button" value="display results" onClick=show_all()>
+        <div id='database'></div>
+        <script>
+function cfunc() {
+    alert(xhttp.responseText);
+    document.getElementById('result').innerHTML = xhttp.responseText;
+}
+function answer() {
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            cfunc(xhttp);
+        }
+    };
+    xhttp.open("POST", "/add_dog", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    params = 'name='+document.dog_form.name.value+'&'+
+        'breed='+document.dog_form.breed.value+'&'+
+        'age='+document.dog_form.age.value+'&'+
+        'sex='+document.dog_form.sex.value;
+    xhttp.send(params);
+}
+function show_all() {
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(xhttp.readyState ==4 && xhttp.status == 200) {
+            document.getElementById('database').innerHTML = xhttp.responseText;
+        }
+    }
+    xhttp.open("GET", "/select_all", true);
+    xhttp.send();
+}
+
+function filter() {
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(xhttp.readyState ==4 && xhttp.status == 200) {
+            document.getElementById('database').innerHTML = xhttp.responseText;
+        }
+    }
+    // write some conditions to make a request
+
+    xhttp.open("GET", "/filter", true);
+    xhttp.send();
+}
+        </script>
+    </body>
+</html>

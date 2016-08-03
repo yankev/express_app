@@ -16,7 +16,7 @@ router.use(function(req, res, next) {
 
 // serve bootstrap template, NEW MAIN!!
 router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/', 'bs_index.html'));
+    res.sendFile(path.join(__dirname, '/', 'new_index.html'));
 })
 
 router.get('/rmarkdown', function(req, res) {
